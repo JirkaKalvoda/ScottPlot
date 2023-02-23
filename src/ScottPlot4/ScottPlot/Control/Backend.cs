@@ -348,7 +348,7 @@ namespace ScottPlot.Control
                     $"{ControlName}.Refresh() must be called\n" +
                     $"after modifying the plot or its data.";
                 Debug.WriteLine(message.Replace("\n", " "));
-                AddErrorMessage(Bmp, message);
+                //AddErrorMessage(Bmp, message);
             }
 
             AxisLimits newLimits = Plot.GetAxisLimits();

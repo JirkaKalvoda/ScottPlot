@@ -94,7 +94,7 @@ namespace ScottPlot.Control
         /// <summary>
         /// If enabled, double-clicking the plot will toggle benchmark visibility
         /// </summary>
-        public bool DoubleClickBenchmark = true;
+        public bool DoubleClickBenchmark = false;
 
         /// <summary>
         /// If enabled, the vertical axis limits cannot be modified by mouse actions

@@ -243,10 +243,10 @@ namespace ScottPlot
             var sfd = new SaveFileDialog
             {
                 FileName = "ScottPlot.png",
-                Filter = "PNG Files (*.png)|*.png;*.png" +
-                         "|JPG Files (*.jpg, *.jpeg)|*.jpg;*.jpeg" +
-                         "|BMP Files (*.bmp)|*.bmp;*.bmp" +
-                         "|All files (*.*)|*.*"
+                Filter = "PNG Files (*.png)|*.png;*.png" //+
+                         //"|JPG Files (*.jpg, *.jpeg)|*.jpg;*.jpeg" +
+                         //"|BMP Files (*.bmp)|*.bmp;*.bmp" +
+                         //"|All files (*.*)|*.*"
             };
 
             if (sfd.ShowDialog() == DialogResult.OK)

@@ -14,6 +14,9 @@ namespace ScottPlot.Demo.WinForms
 
         private void WebsiteLink_Click(object sender, EventArgs e) => Tools.LaunchBrowser("https://ScottPlot.NET/demo");
 
-        private void CookbookButton_Click(object sender, EventArgs e) => new FormCookbook().ShowDialog();
+        private void CookbookButton_Click(object sender, EventArgs e)
+        {
+        //new FormCookbook().ShowDialog();
+        }
     }
 }

@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFrameworks>net6-windows;net48</TargetFrameworks>
+    <!--<TargetFrameworks>net6-windows;net48</TargetFrameworks>-->
+    <TargetFramework>net472</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <RootNamespace>ScottPlot.Demo.WinForms</RootNamespace>
@@ -13,8 +14,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="FormCookbook.cs" />
+    <Compile Remove="FormCookbook.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="FormCookbook.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
 	  <ProjectReference Include="..\..\ScottPlot\ScottPlot.csproj" />
-	  <ProjectReference Include="..\..\ScottPlot.Cookbook\ScottPlot.Cookbook.csproj" />
 	  <ProjectReference Include="..\..\ScottPlot.WinForms\ScottPlot.WinForms.csproj" />
   </ItemGroup>
 
