@@ -14,8 +14,8 @@ namespace ScottPlot.Plottable
     public class ScatterPlot : IPlottable, IHasPoints, IHasLine, IHasMarker, IHighlightable, IHasColor
     {
         // data
-        public double[] Xs { get; private set; }
-        public double[] Ys { get; private set; }
+        public double[] Xs { get; protected set; }
+        public double[] Ys { get; protected set; }
         public double[] XError { get; set; }
         public double[] YError { get; set; }
 
@@ -153,7 +153,7 @@ namespace ScottPlot.Plottable
             Ys = ys;
         }
 
-        public void ValidateData(bool deep = false)
+        public virtual void ValidateData(bool deep = false)
         {
             Validate.AssertHasElements("xs", Xs);
             Validate.AssertHasElements("ys", Ys);
@@ -257,7 +257,7 @@ namespace ScottPlot.Plottable
                 yMax: limits[3] + OffsetY);
         }
 
-        public void Render(PlotDimensions dims, Bitmap bmp, bool lowQuality = false)
+        public virtual void Render(PlotDimensions dims, Bitmap bmp, bool lowQuality = false)
         {
             if (IsVisible == false)
                 return;

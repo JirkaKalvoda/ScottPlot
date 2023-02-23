@@ -965,6 +965,7 @@ namespace ScottPlot
             Add(scalebar);
             return scalebar;
         }
+        
 
         /// <summary>
         /// Add a scatter plot from X/Y pairs. 
@@ -993,6 +994,35 @@ namespace ScottPlot
             Add(plottable);
             return plottable;
         }
+
+
+        /// <summary>
+        /// 添加1条带分段信息的折线，每段内部连线
+        /// </summary>
+        public ScatterPlotPiecewise AddScatterPiecewise(
+            double[] xs,
+            double[] ys,
+            uint[] boundaryPair,
+            Color? color = null,
+            float lineWidth = 1,
+            float markerSize = 5,
+            MarkerShape markerShape = MarkerShape.filledCircle,
+            LineStyle lineStyle = LineStyle.Solid,
+            string label = null)
+        {
+            var plottable = new ScatterPlotPiecewise(xs, ys, boundaryPair, null, null)
+            {
+                Color = color ?? GetNextColor(),
+                LineWidth = lineWidth,
+                MarkerSize = markerSize,
+                Label = label,
+                MarkerShape = markerShape,
+                LineStyle = lineStyle
+            };
+            Add(plottable);
+            return plottable;
+        }
+
 
         /// <summary>
         /// Add a scatter plot from X/Y pairs connected by lines (no markers).
