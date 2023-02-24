@@ -54,33 +54,10 @@ namespace ScottPlot.Renderable
         private float MarkerWidth { get { return Font.Size / 2; } }
 
         /// <summary>
-        /// 图例内条目尺寸是否固定，true 不随线、点的尺寸变化，false 会变化
+        /// 图例内条目尺寸是否用默认值，true 不随线、点的尺寸变化，false 会变化
         /// </summary>
-        public bool IsLegendItemFixedSize
-        {
-            get
-            {
-                if (LegendItems == null || LegendItems.Length == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    return LegendItems[0].IsLegendItemFixedSize;
-                }
-            }
-            set
-            {
-                if (LegendItems != null)
-                {
-                    for (int i = 0; i < LegendItems.Length; ++i)
-                    {
-                        LegendItems[i].IsLegendItemFixedSize = value;
-                    }
-                }
-            }
-        }
-
+        public bool IsLegendItemDefaultSize { get; set; }
+        
         public void Render(PlotDimensions dims, Bitmap bmp, bool lowQuality = false)
         {
             if (IsVisible is false || LegendItems is null || LegendItems.Length == 0)
@@ -227,7 +204,13 @@ namespace ScottPlot.Renderable
                 .SelectMany(x => x.GetLegendItems())
                 .Where(x => !string.IsNullOrWhiteSpace(x.label))
                 .ToArray();
-
+            if (LegendItems != null)
+            {
+                for (int i = 0; i < LegendItems.Length; ++i)
+                {
+                    LegendItems[i].IsLegendItemDefaultSize = IsLegendItemDefaultSize;
+                }
+            }
             if (ReverseOrder)
                 Array.Reverse(LegendItems);
         }
