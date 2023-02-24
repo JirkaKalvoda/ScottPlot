@@ -9,7 +9,7 @@ using ScottPlot.Plottable;
 namespace ScottPlot.WinForms
 {
     /// <summary>
-    /// 折线图、信号图的设置
+    /// 折线图、信号图、误差条的设置
     /// </summary>
     public class ScatterOption : ICopy, ICloneable
     {
@@ -32,7 +32,7 @@ namespace ScottPlot.WinForms
 
 
     /// <summary>
-    /// 折线图、信号图每行的设置
+    /// 折线图、信号图、误差条每行的设置
     /// </summary>
     public class ScatterRowOption : ICopy, ICloneable
     {
@@ -42,13 +42,16 @@ namespace ScottPlot.WinForms
 
         public LineStyle LineStyle { get; set; }
 
+        /// <summary>
+        /// 线颜色，因为在信号图、误差条里线和点用相同颜色所以暂时屏蔽点颜色
+        /// </summary>
         public Color LineColor { get; set; }
 
         public float LineWidth { get; set; }
 
         public MarkerShape MarkerShape { get; set; }
 
-        public Color MarkerColor { get; set; }
+        //public Color MarkerColor { get; set; }
 
         public float MarkerSize { get; set; }
 
@@ -61,7 +64,7 @@ namespace ScottPlot.WinForms
             t.LineColor = this.LineColor;
             t.LineWidth = this.LineWidth;
             t.MarkerShape = this.MarkerShape;
-            t.MarkerColor = this.MarkerColor;
+            //t.MarkerColor = this.MarkerColor;
             t.MarkerSize = this.MarkerSize;
         }
 

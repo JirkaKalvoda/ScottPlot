@@ -35,8 +35,8 @@ namespace ScottPlot.WinForms
             this.b_Discard = new System.Windows.Forms.Button();
             this.b_Save = new System.Windows.Forms.Button();
             this.dgc_Scatter_Label = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgc_Scatter_LineStyle = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgc_Scatter_LineColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgc_Scatter_LineStyle = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgc_Scatter_LineWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgc_Scatter_MarkerShape = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dgc_Scatter_MarkerColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,11 +67,11 @@ namespace ScottPlot.WinForms
             this.dgv_Scatter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Scatter.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgc_Scatter_Label,
-            this.dgc_Scatter_LineStyle,
             this.dgc_Scatter_LineColor,
+            this.dgc_Scatter_LineStyle,
             this.dgc_Scatter_LineWidth,
             this.dgc_Scatter_MarkerShape,
-            this.dgc_Scatter_MarkerColor,
+            //this.dgc_Scatter_MarkerColor,
             this.dgc_Scatter_MarkerSize});
             this.dgv_Scatter.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv_Scatter.Location = new System.Drawing.Point(6, 22);
@@ -124,19 +124,19 @@ namespace ScottPlot.WinForms
             this.dgc_Scatter_Label.Name = "dgc_Scatter_Label";
             this.dgc_Scatter_Label.Width = 64;
             // 
+            // dgc_Scatter_LineColor
+            // 
+            this.dgc_Scatter_LineColor.HeaderText = "Color";
+            this.dgc_Scatter_LineColor.Name = "dgc_Scatter_LineColor";
+            this.dgc_Scatter_LineColor.ReadOnly = true;
+            this.dgc_Scatter_LineColor.Width = 65;
+            // 
             // dgc_Scatter_LineStyle
             // 
             this.dgc_Scatter_LineStyle.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.dgc_Scatter_LineStyle.HeaderText = "Line Style";
             this.dgc_Scatter_LineStyle.Name = "dgc_Scatter_LineStyle";
             this.dgc_Scatter_LineStyle.Width = 68;
-            // 
-            // dgc_Scatter_LineColor
-            // 
-            this.dgc_Scatter_LineColor.HeaderText = "Line Color";
-            this.dgc_Scatter_LineColor.Name = "dgc_Scatter_LineColor";
-            this.dgc_Scatter_LineColor.ReadOnly = true;
-            this.dgc_Scatter_LineColor.Width = 92;
             // 
             // dgc_Scatter_LineWidth
             // 
@@ -191,8 +191,8 @@ namespace ScottPlot.WinForms
         private System.Windows.Forms.Button b_Discard;
         private System.Windows.Forms.Button b_Save;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgc_Scatter_Label;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dgc_Scatter_LineStyle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgc_Scatter_LineColor;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dgc_Scatter_LineStyle;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgc_Scatter_LineWidth;
         private System.Windows.Forms.DataGridViewComboBoxColumn dgc_Scatter_MarkerShape;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgc_Scatter_MarkerColor;

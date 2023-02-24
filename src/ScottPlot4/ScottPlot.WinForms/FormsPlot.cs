@@ -274,11 +274,11 @@ namespace ScottPlot
                     {
                         ScatterObject = sp,
                         Label = sp.Label,
+                        LineColor = sp.Color,
                         LineStyle = sp.LineStyle,
-                        LineColor = sp.LineColor,
                         LineWidth = (float)sp.LineWidth,
                         MarkerShape = sp.MarkerShape,
-                        MarkerColor = sp.MarkerColor,
+                        //MarkerColor = sp.MarkerColor,
                         MarkerSize = sp.MarkerSize
                     });
                 }
@@ -288,12 +288,25 @@ namespace ScottPlot
                     {
                         ScatterObject = sip,
                         Label = sip.Label,
+                        LineColor = sip.Color,
                         LineStyle = sip.LineStyle,
-                        LineColor = sip.LineColor,
                         LineWidth = (float)sip.LineWidth,
                         MarkerShape = sip.MarkerShape,
-                        MarkerColor = sip.MarkerColor,
+                        //MarkerColor = sip.MarkerColor,
                         MarkerSize = sip.MarkerSize
+                    });
+                }
+                else if (iplot is ErrorBar eb)
+                {
+                    po.ScatterOption.ScatterRows.Add(new ScatterRowOption()
+                    {
+                        ScatterObject = eb,
+                        LineColor = eb.Color,
+                        LineStyle = eb.LineStyle,
+                        LineWidth = (float)eb.LineWidth,
+                        MarkerShape = eb.MarkerShape,
+                        //MarkerColor = sip.MarkerColor,
+                        MarkerSize = eb.MarkerSize
                     });
                 }
             }
@@ -313,22 +326,31 @@ namespace ScottPlot
                 if (sro.ScatterObject is ScatterPlot sp)
                 {
                     sp.Label = sro.Label;
+                    sp.Color = sro.LineColor;
                     sp.LineStyle = sro.LineStyle;
-                    sp.LineColor = sro.LineColor;
                     sp.LineWidth = sro.LineWidth;
                     sp.MarkerShape = sro.MarkerShape;
-                    sp.MarkerColor = sro.MarkerColor;
+                    //sp.MarkerColor = sro.MarkerColor;
                     sp.MarkerSize = sro.MarkerSize;
                 }
                 else if (sro.ScatterObject is SignalPlotBase<double> sip)
                 {
                     sip.Label = sro.Label;
+                    sip.Color = sro.LineColor;
                     sip.LineStyle = sro.LineStyle;
-                    sip.LineColor = sro.LineColor;
                     sip.LineWidth = sro.LineWidth;
                     sip.MarkerShape = sro.MarkerShape;
-                    sip.MarkerColor = sro.MarkerColor;
+                    //sip.MarkerColor = sro.MarkerColor;
                     sip.MarkerSize = sro.MarkerSize;
+                }
+                else if (sro.ScatterObject is ErrorBar eb)
+                {
+                    eb.Color = sro.LineColor;
+                    eb.LineStyle = sro.LineStyle;
+                    eb.LineWidth = sro.LineWidth;
+                    eb.MarkerShape = sro.MarkerShape;
+                    //eb.MarkerColor = sro.MarkerColor;
+                    eb.MarkerSize = sro.MarkerSize;
                 }
             }
 

@@ -75,10 +75,10 @@ namespace ScottPlot.WinForms
             {
                 temp.ScatterOption.ScatterRows[currentColorRow].LineColor = e.SelectedColor;
             }
-            else
-            {
-                temp.ScatterOption.ScatterRows[currentColorRow].MarkerColor = e.SelectedColor;
-            }
+            //else
+            //{
+            //    temp.ScatterOption.ScatterRows[currentColorRow].MarkerColor = e.SelectedColor;
+            //}
         }
 
         private void Dgv_Scatter_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -125,7 +125,7 @@ namespace ScottPlot.WinForms
             dgc_Scatter_LineColor.DataPropertyName = nameof(ScatterRowOption.LineColor);
             dgc_Scatter_LineWidth.DataPropertyName = nameof(ScatterRowOption.LineWidth);
             dgc_Scatter_MarkerShape.DataPropertyName = nameof(ScatterRowOption.MarkerShape);
-            dgc_Scatter_MarkerColor.DataPropertyName = nameof(ScatterRowOption.MarkerColor);
+            //dgc_Scatter_MarkerColor.DataPropertyName = nameof(ScatterRowOption.MarkerColor);
             dgc_Scatter_MarkerSize.DataPropertyName = nameof(ScatterRowOption.MarkerSize);
             dgvbs_Scatter.ResetBindings(true);
 

@@ -21,7 +21,7 @@ namespace ScottPlot.Plottable
         private double _lineWidth { get; set; }
         public double lineWidth
         {
-            get => (Parent is IHasLine parent) ? Math.Min(parent.LineWidth, 10) : _lineWidth;
+            get => (Parent is IHasLine parent && !IsLegendItemFixedSize) ? Math.Min(parent.LineWidth, 10) : _lineWidth;
             set { _lineWidth = value; }
         }
         public Color LineColor => Parent is IHasLine p ? p.LineColor : color;
@@ -30,7 +30,7 @@ namespace ScottPlot.Plottable
         private float _markerSize = 0;
         public float markerSize
         {
-            get => (Parent is IHasMarker parent) ? parent.MarkerSize : _markerSize;
+            get => (Parent is IHasMarker parent && !IsLegendItemFixedSize) ? parent.MarkerSize : _markerSize;
             set { _markerSize = value; }
         }
 
@@ -52,6 +52,11 @@ namespace ScottPlot.Plottable
         }
 
         public readonly IPlottable Parent;
+
+        /// <summary>
+        /// 图例内条目尺寸是否固定，true 不随线、点的尺寸变化，false 会变化
+        /// </summary>
+        public bool IsLegendItemFixedSize { get; set; }
 
         public LegendItem(IPlottable parent)
         {
