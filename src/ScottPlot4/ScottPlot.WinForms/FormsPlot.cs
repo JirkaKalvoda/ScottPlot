@@ -310,7 +310,7 @@ namespace ScottPlot
             for (int i = 0; i < po.ScatterOption.ScatterRows.Count; ++i)
             {
                 ScatterRowOption sro = po.ScatterOption.ScatterRows[i];
-                if (sro.ScatterObject  is ScatterPlot sp)
+                if (sro.ScatterObject is ScatterPlot sp)
                 {
                     sp.Label = sro.Label;
                     sp.LineStyle = sro.LineStyle;
@@ -320,7 +320,7 @@ namespace ScottPlot
                     sp.MarkerColor = sro.MarkerColor;
                     sp.MarkerSize = sro.MarkerSize;
                 }
-                else if (sro.ScatterObject is SignalPlot sip)
+                else if (sro.ScatterObject is SignalPlotBase<double> sip)
                 {
                     sip.Label = sro.Label;
                     sip.LineStyle = sro.LineStyle;
