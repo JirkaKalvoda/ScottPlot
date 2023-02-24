@@ -41,8 +41,10 @@ namespace ScottPlot
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.openInNewWindowMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detachLegendMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rtbErrorMessage = new System.Windows.Forms.RichTextBox();
             this.plotObjectEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rtbErrorMessage = new System.Windows.Forms.RichTextBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmi_PlotOption = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.DefaultRightClickMenu.SuspendLayout();
             this.SuspendLayout();
@@ -52,9 +54,9 @@ namespace ScottPlot
             this.pictureBox1.BackColor = System.Drawing.Color.Navy;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(467, 346);
+            this.pictureBox1.Size = new System.Drawing.Size(400, 277);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.DoubleClick += new System.EventHandler(this.PictureBox1_DoubleClick);
@@ -77,96 +79,109 @@ namespace ScottPlot
             this.toolStripSeparator3,
             this.openInNewWindowMenuItem,
             this.detachLegendMenuItem,
-            this.plotObjectEditorToolStripMenuItem});
+            this.plotObjectEditorToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.tsmi_PlotOption});
             this.DefaultRightClickMenu.Name = "contextMenuStrip1";
-            this.DefaultRightClickMenu.Size = new System.Drawing.Size(191, 198);
+            this.DefaultRightClickMenu.Size = new System.Drawing.Size(204, 226);
             // 
             // copyMenuItem
             // 
             this.copyMenuItem.Name = "copyMenuItem";
-            this.copyMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.copyMenuItem.Size = new System.Drawing.Size(203, 22);
             this.copyMenuItem.Text = "Copy Image";
             this.copyMenuItem.Click += new System.EventHandler(this.RightClickMenu_Copy_Click);
             // 
             // saveImageMenuItem
             // 
             this.saveImageMenuItem.Name = "saveImageMenuItem";
-            this.saveImageMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveImageMenuItem.Size = new System.Drawing.Size(203, 22);
             this.saveImageMenuItem.Text = "Save Image As...";
             this.saveImageMenuItem.Click += new System.EventHandler(this.RightClickMenu_SaveImage_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(200, 6);
             // 
             // autoAxisMenuItem
             // 
             this.autoAxisMenuItem.Name = "autoAxisMenuItem";
-            this.autoAxisMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.autoAxisMenuItem.Size = new System.Drawing.Size(203, 22);
             this.autoAxisMenuItem.Text = "Zoom to Fit Data";
             this.autoAxisMenuItem.Click += new System.EventHandler(this.RightClickMenu_AutoAxis_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(200, 6);
             // 
             // helpMenuItem
             // 
             this.helpMenuItem.Name = "helpMenuItem";
-            this.helpMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.helpMenuItem.Size = new System.Drawing.Size(203, 22);
             this.helpMenuItem.Text = "Help";
             this.helpMenuItem.Click += new System.EventHandler(this.RightClickMenu_Help_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(200, 6);
             // 
             // openInNewWindowMenuItem
             // 
             this.openInNewWindowMenuItem.Name = "openInNewWindowMenuItem";
-            this.openInNewWindowMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.openInNewWindowMenuItem.Size = new System.Drawing.Size(203, 22);
             this.openInNewWindowMenuItem.Text = "Open in New Window";
             this.openInNewWindowMenuItem.Click += new System.EventHandler(this.RightClickMenu_OpenInNewWindow_Click);
             // 
             // detachLegendMenuItem
             // 
             this.detachLegendMenuItem.Name = "detachLegendMenuItem";
-            this.detachLegendMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.detachLegendMenuItem.Size = new System.Drawing.Size(203, 22);
             this.detachLegendMenuItem.Text = "Detach Legend";
             this.detachLegendMenuItem.Click += new System.EventHandler(this.RightClickMenu_DetachLegend_Click);
-            // 
-            // rtbErrorMessage
-            // 
-            this.rtbErrorMessage.BackColor = System.Drawing.Color.Maroon;
-            this.rtbErrorMessage.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.rtbErrorMessage.ForeColor = System.Drawing.Color.White;
-            this.rtbErrorMessage.Location = new System.Drawing.Point(24, 28);
-            this.rtbErrorMessage.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.rtbErrorMessage.Name = "rtbErrorMessage";
-            this.rtbErrorMessage.Size = new System.Drawing.Size(216, 96);
-            this.rtbErrorMessage.TabIndex = 1;
-            this.rtbErrorMessage.Text = "error message";
-            this.rtbErrorMessage.Visible = false;
             // 
             // plotObjectEditorToolStripMenuItem
             // 
             this.plotObjectEditorToolStripMenuItem.Name = "plotObjectEditorToolStripMenuItem";
-            this.plotObjectEditorToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.plotObjectEditorToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.plotObjectEditorToolStripMenuItem.Text = "Plot Object Editor";
             this.plotObjectEditorToolStripMenuItem.Click += new System.EventHandler(this.RightClickMenu_PlotObjectEditor_Click);
             // 
+            // rtbErrorMessage
+            // 
+            this.rtbErrorMessage.BackColor = System.Drawing.Color.Maroon;
+            this.rtbErrorMessage.Font = new System.Drawing.Font("Consolas", 9.75F);
+            this.rtbErrorMessage.ForeColor = System.Drawing.Color.White;
+            this.rtbErrorMessage.Location = new System.Drawing.Point(21, 22);
+            this.rtbErrorMessage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rtbErrorMessage.Name = "rtbErrorMessage";
+            this.rtbErrorMessage.Size = new System.Drawing.Size(186, 78);
+            this.rtbErrorMessage.TabIndex = 1;
+            this.rtbErrorMessage.Text = "error message";
+            this.rtbErrorMessage.Visible = false;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(200, 6);
+            // 
+            // tsmi_PlotOption
+            // 
+            this.tsmi_PlotOption.Name = "tsmi_PlotOption";
+            this.tsmi_PlotOption.Size = new System.Drawing.Size(203, 22);
+            this.tsmi_PlotOption.Text = "Plot Options...";
+            // 
             // FormsPlot
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.rtbErrorMessage);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormsPlot";
-            this.Size = new System.Drawing.Size(467, 346);
+            this.Size = new System.Drawing.Size(400, 277);
             this.Load += new System.EventHandler(this.FormsPlot_Load);
             this.SizeChanged += new System.EventHandler(this.OnSizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -190,5 +205,7 @@ namespace ScottPlot
         private System.Windows.Forms.ToolStripMenuItem detachLegendMenuItem;
         private System.Windows.Forms.RichTextBox rtbErrorMessage;
         private System.Windows.Forms.ToolStripMenuItem plotObjectEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem tsmi_PlotOption;
     }
 }

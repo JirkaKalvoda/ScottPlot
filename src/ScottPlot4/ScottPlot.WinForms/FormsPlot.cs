@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using ScottPlot.Plottable;
+using ScottPlot.WinForms;
 
 #pragma warning disable IDE1006 // lowercase public properties
 #pragma warning disable CS0067 // unused events
@@ -126,7 +128,9 @@ namespace ScottPlot
             RightClicked += DefaultRightClickEvent;
 
             Backend.StartProcessingEvents();
+            tsmi_PlotOption.Click += Tsmi_PlotOption_Click;
         }
+
 
         /// <summary>
         /// Return the mouse position on the plot (in coordinate space) for the latest X and Y coordinates
@@ -254,5 +258,88 @@ namespace ScottPlot
         }
 
         private void RightClickMenu_PlotObjectEditor_Click(object sender, EventArgs e) => new PlotObjectEditor(this).ShowDialog();
+
+        #region 设置IPlottable的属性
+
+        private PlotOption po;
+
+        private void GetPlotOptions()
+        {
+            po = new PlotOption();
+            foreach (var iplot in this.Plot.GetSettings(false).Plottables)
+            {
+                if (iplot is ScatterPlot sp)
+                {
+                    po.ScatterOption.ScatterRows.Add(new ScatterRowOption()
+                    {
+                        ScatterObject = sp,
+                        Label = sp.Label,
+                        LineStyle = sp.LineStyle,
+                        LineColor = sp.LineColor,
+                        LineWidth = (float)sp.LineWidth,
+                        MarkerShape = sp.MarkerShape,
+                        MarkerColor = sp.MarkerColor,
+                        MarkerSize = sp.MarkerSize
+                    });
+                }
+                else if (iplot is SignalPlotBase<double> sip)
+                {
+                    po.ScatterOption.ScatterRows.Add(new ScatterRowOption()
+                    {
+                        ScatterObject = sip,
+                        Label = sip.Label,
+                        LineStyle = sip.LineStyle,
+                        LineColor = sip.LineColor,
+                        LineWidth = (float)sip.LineWidth,
+                        MarkerShape = sip.MarkerShape,
+                        MarkerColor = sip.MarkerColor,
+                        MarkerSize = sip.MarkerSize
+                    });
+                }
+            }
+
+            FormPlotOption fpo = new FormPlotOption(po);
+            if (fpo.ShowDialog() == DialogResult.OK)
+            {
+                SetPlotOptions();
+            }
+        }
+
+        private void SetPlotOptions()
+        {
+            for (int i = 0; i < po.ScatterOption.ScatterRows.Count; ++i)
+            {
+                ScatterRowOption sro = po.ScatterOption.ScatterRows[i];
+                if (sro.ScatterObject  is ScatterPlot sp)
+                {
+                    sp.Label = sro.Label;
+                    sp.LineStyle = sro.LineStyle;
+                    sp.LineColor = sro.LineColor;
+                    sp.LineWidth = sro.LineWidth;
+                    sp.MarkerShape = sro.MarkerShape;
+                    sp.MarkerColor = sro.MarkerColor;
+                    sp.MarkerSize = sro.MarkerSize;
+                }
+                else if (sro.ScatterObject is SignalPlot sip)
+                {
+                    sip.Label = sro.Label;
+                    sip.LineStyle = sro.LineStyle;
+                    sip.LineColor = sro.LineColor;
+                    sip.LineWidth = sro.LineWidth;
+                    sip.MarkerShape = sro.MarkerShape;
+                    sip.MarkerColor = sro.MarkerColor;
+                    sip.MarkerSize = sro.MarkerSize;
+                }
+            }
+
+            Refresh(true, false);
+        }
+
+        private void Tsmi_PlotOption_Click(object sender, EventArgs e)
+        {
+            GetPlotOptions();
+        }
+
+        #endregion
     }
 }

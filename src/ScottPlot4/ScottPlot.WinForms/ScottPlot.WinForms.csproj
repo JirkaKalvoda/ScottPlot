@@ -17,4 +17,9 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Tools\" />
+    <Folder Include="Events\" />
+  </ItemGroup>
+
 </Project>
