@@ -47,12 +47,36 @@ namespace ScottPlot.Renderable
                 AxisLabel.Edge = value;
                 AxisTicks.Edge = value;
                 bool isVertical = (value == Edge.Left || value == Edge.Right);
-                AxisTicks.TickCollection.Orientation = isVertical ? AxisOrientation.Vertical : AxisOrientation.Horizontal;
+                //AxisTicks.TickCollection.Orientation = isVertical ? AxisOrientation.Vertical : AxisOrientation.Horizontal;
                 Dims.IsInverted = isVertical;
+                switch (_Edge)
+                {
+                    case Edge.Left:
+                    case Edge.Right:
+                        AxisTicks.TickCollection.Orientation = AxisOrientation.Vertical;
+                        break;
+
+                    case Edge.Bottom:
+                    case Edge.Top:
+                        AxisTicks.TickCollection.Orientation = AxisOrientation.Horizontal;
+                        break;
+
+                    case Edge.Ray:
+                        AxisTicks.TickCollection.Orientation = AxisOrientation.Ray;
+                        break;
+
+                    case Edge.Circle:
+                        AxisTicks.TickCollection.Orientation = AxisOrientation.Circle;
+                        break;
+
+                    default:
+                        break;
+                }
             }
         }
         public bool IsHorizontal => Edge == Edge.Top || Edge == Edge.Bottom;
         public bool IsVertical => Edge == Edge.Left || Edge == Edge.Right;
+        public bool IsRay => Edge == Edge.Ray;
 
         // private renderable components
         private readonly AxisLabel AxisLabel = new AxisLabel();

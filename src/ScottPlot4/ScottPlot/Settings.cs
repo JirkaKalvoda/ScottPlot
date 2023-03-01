@@ -49,7 +49,9 @@ namespace ScottPlot
             new DefaultLeftAxis(),
             new DefaultRightAxis(),
             new DefaultBottomAxis(),
-            new DefaultTopAxis()
+            new DefaultTopAxis(),
+            new DefaultRayAxis(),
+            new DefaultCircleAxis()
         };
 
         /// <summary>
@@ -61,6 +63,11 @@ namespace ScottPlot
         /// Get an array containing just vertical axes
         /// </summary>
         public Axis[] VerticalAxes => Axes.Where(x => x.IsVertical).Distinct().ToArray();
+
+        /// <summary>
+        /// 获取射线轴（只有1个）
+        /// </summary>
+        public Axis RayAxis => Axes.Where(x => x.IsRay).Distinct().ToArray()[0];
 
         /// <summary>
         /// Return the first horizontal axis with the given axis index
@@ -192,6 +199,24 @@ namespace ScottPlot
         }
 
         /// <summary>
+        /// Return figure dimensions for the Ray axis
+        /// </summary>
+        public PlotDimensions GetPlotDimensionsRay(double scaleFactor)
+        {
+            // determine figure dimensions based on primary X and Y axis
+            var figureSize = new SizeF(RayAxis.Dims.FigureSizePx, RayAxis.Dims.FigureSizePx);
+            var dataSize = new SizeF(RayAxis.Dims.DataSizePx, RayAxis.Dims.DataSizePx);
+            var dataOffset = new PointF(RayAxis.Dims.DataOffsetPx, RayAxis.Dims.DataOffsetPx);
+
+            // determine axis limits based on specific X and Y axes
+            (double rayMin, double rayMax) = RayAxis.Dims.RationalLimits();
+            AxisLimits limits = new AxisLimits(rayMin, rayMax, rayMin, rayMax);
+
+            return new PlotDimensions(figureSize, dataSize, dataOffset, limits, scaleFactor);
+        }
+
+
+        /// <summary>
         /// Set the default size for rendering images
         /// </summary>
         public void Resize(float width, float height)
@@ -216,6 +241,7 @@ namespace ScottPlot
         {
             GetXAxis(xAxisIndex).Dims.SetAxis(xMin, xMax);
             GetYAxis(yAxisIndex).Dims.SetAxis(yMin, yMax);
+            RayAxis.Dims.SetAxis(xMin, xMax);
         }
 
         /// <summary>
@@ -225,6 +251,7 @@ namespace ScottPlot
         {
             GetXAxis(xAxisIndex).Dims.SetAxis(limits.XMin, limits.XMax);
             GetYAxis(yAxisIndex).Dims.SetAxis(limits.YMin, limits.YMax);
+            RayAxis.Dims.SetAxis(limits.XMin, limits.XMax);
         }
 
         /// <summary>
@@ -576,11 +603,11 @@ namespace ScottPlot
             {
                 LayoutAuto(xAxisIndex, 0);
             }
-
             foreach (int yAxisIndex in yIndexes)
             {
                 LayoutAuto(0, yAxisIndex);
             }
+            LayoutAutoRay();
         }
 
         private void LayoutAuto(int xAxisIndex, int yAxisIndex)
@@ -640,6 +667,49 @@ namespace ScottPlot
             // adjust the layout based on measured tick label sizes
             RecalculateDataPadding();
         }
+
+
+        /// <summary>
+        /// 射线轴的布局
+        /// </summary>
+        private void LayoutAutoRay()
+        {
+            // Adjust padding around the data area to accommodate title and tick labels.
+            //
+            // This is a chicken-and-egg problem:
+            //   * TICK DENSITY depends on the DATA AREA SIZE
+            //   * DATA AREA SIZE depends on LAYOUT PADDING
+            //   * LAYOUT PADDING depends on MAXIMUM LABEL SIZE
+            //   * MAXIMUM LABEL SIZE depends on TICK DENSITY
+            //
+            // To solve this, start by assuming data area size == figure size and layout padding == 0,
+            // then calculate ticks, then set padding based on the largest tick, then re-calculate ticks.
+
+            // axis limits shall not change
+            var dims = GetPlotDimensionsRay(scaleFactor: 1.0);
+            var figSize = new SizeF(Width, Height);
+
+            // first-pass tick calculation based on full image size 
+            var dimsFull = new PlotDimensions(figSize, figSize, new PointF(0, 0), dims.AxisLimits, scaleFactor: 1);
+
+            RayAxis.RecalculateTickPositions(dimsFull);
+            RayAxis.RecalculateAxisSize();
+
+            // now adjust our layout based on measured axis sizes
+            RecalculateDataPadding();
+
+            // now recalculate ticks based on new layout
+            var dataSize = new SizeF(RayAxis.Dims.DataSizePx, RayAxis.Dims.DataSizePx);
+            var dataOffset = new PointF(RayAxis.Dims.DataOffsetPx, RayAxis.Dims.DataOffsetPx);
+
+            var dims3 = new PlotDimensions(figSize, dataSize, dataOffset, dims.AxisLimits, scaleFactor: 1.0);
+
+            RayAxis.RecalculateTickPositions(dims3);
+
+            // adjust the layout based on measured tick label sizes
+            RecalculateDataPadding();
+        }
+
 
         private void RecalculateDataPadding()
         {

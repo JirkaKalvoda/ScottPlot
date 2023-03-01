@@ -35,6 +35,11 @@ namespace ScottPlot.Renderable
                     gfx.DrawLine(pen, right + PixelOffset, bottom, right + PixelOffset, top);
                 else if (Edge == Edge.Top)
                     gfx.DrawLine(pen, left, top - PixelOffset, right, top - PixelOffset);
+                else if (Edge == Edge.Ray)
+                    gfx.DrawLine(pen, dims.PxCenterX, dims.PxCenterY, dims.PxCenterX + dims.PxRadius, dims.PxCenterY);
+                else if (Edge == Edge.Circle)
+                    gfx.DrawEllipse(pen, dims.PxCenterX - dims.PxRadius, dims.PxCenterY - dims.PxRadius, 2 * dims.PxRadius, 2 * dims.PxRadius);
+
                 else
                     throw new NotImplementedException();
             }

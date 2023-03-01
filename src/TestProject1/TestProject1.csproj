@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!--<TargetFramework>net5.0-windows</TargetFramework>-->
+	<TargetFramework>net472</TargetFramework>
+    <IsPackable>false</IsPackable>
+	<UseWindowForms>true</UseWindowForms>
+	<StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="MSTest.TestAdapter" Version="2.2.3" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.3" />
+    <PackageReference Include="coverlet.collector" Version="3.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ScottPlot4\ScottPlot.WinForms\ScottPlot.WinForms.csproj" />
+    <ProjectReference Include="..\ScottPlot4\ScottPlot\ScottPlot.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+
+</Project>

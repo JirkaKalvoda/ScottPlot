@@ -40,6 +40,28 @@
         }
     }
 
+    public class DefaultCircleAxis : Axis
+    {
+        public DefaultCircleAxis()
+        {
+            Edge = Edge.Circle;
+            Grid(false);
+            Ticks(false);
+            IsVisible = false;
+        }
+    }
+
+    public class DefaultRayAxis : Axis
+    {
+        public DefaultRayAxis()
+        {
+            Edge = Edge.Ray;
+            Grid(false);
+            Ticks(false);
+            IsVisible = false;
+        }
+    }
+
     public class AdditionalRightAxis : Axis
     {
         public AdditionalRightAxis(int yAxisIndex, string title)

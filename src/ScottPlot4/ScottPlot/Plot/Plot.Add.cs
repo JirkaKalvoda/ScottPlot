@@ -965,7 +965,49 @@ namespace ScottPlot
             Add(scalebar);
             return scalebar;
         }
-        
+
+
+        /// <summary>
+        /// 添加极坐标线并把画布改成极坐标
+        /// </summary>
+        public PolarPlot AddPolar(
+            double[] xs,
+            double[] ys,
+            Color? color = null,
+            float lineWidth = 1,
+            float markerSize = 5,
+            MarkerShape markerShape = MarkerShape.filledCircle,
+            LineStyle lineStyle = LineStyle.Solid,
+            string label = null)
+        {
+            var plottable = new PolarPlot(xs, ys)
+            {
+                Color = color ?? GetNextColor(),
+                LineWidth = lineWidth,
+                MarkerSize = markerSize,
+                Label = label,
+                MarkerShape = markerShape,
+                LineStyle = lineStyle
+            };
+            Add(plottable);
+
+            // 极坐标系不能兼容直角坐标系和饼图等
+            for (int i = 0; i < 4; ++i)
+            {
+                settings.Axes[i].Grid(false);
+                settings.Axes[i].Ticks(false);
+                settings.Axes[i].IsVisible = false;
+            }
+            for (int i = 4; i < 6; ++i)
+            {
+                settings.Axes[i].Grid(true);
+                settings.Axes[i].Ticks(true);
+                settings.Axes[i].IsVisible = true;
+            }
+
+            return plottable;
+        }
+
 
         /// <summary>
         /// Add a scatter plot from X/Y pairs. 
@@ -999,6 +1041,7 @@ namespace ScottPlot
         /// <summary>
         /// 添加1条带分段信息的折线，每段内部连线
         /// </summary>
+        /// <param name="boundaryPair">所有段的起止下标，偶数起始下标，奇数终止下标</param>
         public ScatterPlotPiecewise AddScatterPiecewise(
             double[] xs,
             double[] ys,

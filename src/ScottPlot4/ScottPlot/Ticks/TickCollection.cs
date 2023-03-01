@@ -8,7 +8,12 @@ using System.Linq;
 namespace ScottPlot.Ticks
 {
     public enum TickLabelFormat { Numeric, DateTime }; // TODO: add hex, binary, scientific notation, etc?
-    public enum AxisOrientation { Vertical, Horizontal };
+
+    /// <summary>
+    /// 轴方向，极坐标射线轴也是水平的，但是最小值固定是0
+    /// </summary>
+    public enum AxisOrientation { Vertical, Horizontal, Ray, Circle };
+
     public enum MinorTickDistribution { even, log };
 
     public class TickCollection
@@ -267,7 +272,7 @@ namespace ScottPlot.Ticks
 
         private void RecalculatePositionsAutomaticNumeric(PlotDimensions dims, float labelWidth, float labelHeight, int? forcedTickCount)
         {
-            double low, high, tickSpacing;
+            double low = 0, high = 0, tickSpacing = 0;
             int maxTickCount;
 
             if (Orientation == AxisOrientation.Vertical)
@@ -279,11 +284,20 @@ namespace ScottPlot.Ticks
                 tickSpacing = (manualSpacingY != 0) ? manualSpacingY : GetIdealTickSpacing(low, high, maxTickCount, radix);
                 tickSpacing = Math.Max(tickSpacing, MinimumTickSpacing);
             }
-            else
+            else if (Orientation == AxisOrientation.Horizontal)
             {
                 low = dims.XMin - dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
                 high = dims.XMax + dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
                 maxTickCount = (int)(dims.DataWidth / labelWidth * TickDensity);
+                maxTickCount = forcedTickCount ?? maxTickCount;
+                tickSpacing = (manualSpacingX != 0) ? manualSpacingX : GetIdealTickSpacing(low, high, maxTickCount, radix);
+                tickSpacing = Math.Max(tickSpacing, MinimumTickSpacing);
+            }
+            else if (Orientation == AxisOrientation.Ray)
+            {
+                low = 0;//dims.XMin - dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
+                high = dims.XMax + dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
+                maxTickCount = (int)(dims.PxRadius / labelWidth * TickDensity);     // 极坐标只能按半径规划刻度值的间距
                 maxTickCount = forcedTickCount ?? maxTickCount;
                 tickSpacing = (manualSpacingX != 0) ? manualSpacingX : GetIdealTickSpacing(low, high, maxTickCount, radix);
                 tickSpacing = Math.Max(tickSpacing, MinimumTickSpacing);
@@ -612,10 +626,20 @@ namespace ScottPlot.Ticks
                 low = dims.YMin - dims.UnitsPerPxY; // add an extra pixel to capture the edge tick
                 high = dims.YMax + dims.UnitsPerPxY; // add an extra pixel to capture the edge tick
             }
-            else
+            else if (Orientation == AxisOrientation.Horizontal)
             {
                 low = dims.XMin - dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
                 high = dims.XMax + dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
+            }
+            else if (Orientation == AxisOrientation.Ray)
+            {
+                low = 0;               // 极坐标半径都是从0开始
+                high = dims.XMax + dims.UnitsPerPxX;
+            }
+            else
+            {
+                low = 0;
+                high = 0;
             }
 
             return GetMajorTicks(low, high);
@@ -629,10 +653,20 @@ namespace ScottPlot.Ticks
                 low = dims.YMin - dims.UnitsPerPxY; // add an extra pixel to capture the edge tick
                 high = dims.YMax + dims.UnitsPerPxY; // add an extra pixel to capture the edge tick
             }
-            else
+            else if (Orientation == AxisOrientation.Horizontal)
             {
                 low = dims.XMin - dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
                 high = dims.XMax + dims.UnitsPerPxX; // add an extra pixel to capture the edge tick
+            }
+            else if (Orientation == AxisOrientation.Ray)
+            {
+                low = 0;               // 极坐标半径都是从0开始
+                high = dims.XMax + dims.UnitsPerPxX;
+            }
+            else
+            {
+                low = 0;
+                high = 0;
             }
 
             return GetMinorTicks()
