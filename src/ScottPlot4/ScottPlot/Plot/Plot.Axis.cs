@@ -13,6 +13,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using ScottPlot.Renderable;
 
 namespace ScottPlot
 {
@@ -59,8 +60,36 @@ namespace ScottPlot
         /// <summary>
         /// Set the label for the horizontal axis above the plot (XAxis2)
         /// </summary>
-        public void Title(string label, bool? bold = true, Color? color = null, float? size = null, string fontName = null) =>
-            XAxis2.Label(label, color, size, bold, fontName);
+        public void Title(string label, bool? bold = true, Color? color = null, float? size = null, string fontName = null)
+        {
+            //XAxis2.Label(label, color, size, bold, fontName);
+            if (settings.Title == null)
+            {
+                settings.Title = new Title();
+            }
+            if (!settings.Title.IsVisible)
+            {
+                settings.Title.IsVisible = true;
+            }
+            settings.Title.Name = label;
+            settings.Title.IsItalic = true;
+            if (bold != null)
+            {
+                settings.Title.IsBold = (bool) bold;
+            }
+            if (color != null)
+            {
+                settings.Title.Color = (Color) color;
+            }
+            if (size != null)
+            {
+                settings.Title.FontSize = (float) size;
+            }
+            if (fontName != null)
+            {
+                settings.Title.FontName = fontName;
+            }
+        }
 
         /// <summary>
         /// Configure color and visibility of the frame that outlines the data area.

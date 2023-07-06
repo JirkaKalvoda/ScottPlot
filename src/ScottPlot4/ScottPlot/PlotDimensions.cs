@@ -11,10 +11,14 @@ namespace ScottPlot
         // plot dimensions
         public readonly float Width;
         public readonly float Height;
-        public readonly float DataWidth;
-        public readonly float DataHeight;
-        public readonly float DataOffsetX;
-        public readonly float DataOffsetY;
+        //public readonly float DataWidth;
+        //public readonly float DataHeight;
+        //public readonly float DataOffsetX;
+        //public readonly float DataOffsetY;
+        public float DataWidth;
+        public float DataHeight;
+        public float DataOffsetX;
+        public float DataOffsetY;
 
         // rendering options
         public readonly double ScaleFactor;
@@ -39,7 +43,7 @@ namespace ScottPlot
         /// <summary>
         /// 防止弧度值显示在画布外所以留了边距
         /// </summary>
-        public const float Padding = 20;
+        public const float Padding = 25;
 
         /// <summary>
         /// 极坐标系像素半径

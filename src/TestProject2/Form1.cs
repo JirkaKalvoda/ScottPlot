@@ -18,12 +18,15 @@ namespace TestProject2
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-
-            //InsertScatter();
-            InsertPolar();
+            FormsPlot fp;
+            //fp = InsertScatter();
+            fp = InsertPolar();
+            Controls.Add(fp);
+            Padding = new Padding(0, 0, 0, 0);
+            fp.Dock = DockStyle.Fill;
         }
 
-        private void InsertScatter()
+        private FormsPlot InsertScatter()
         {
             FormsPlot fp = new FormsPlot();
             double[] x = { 1, 2, 3 };
@@ -41,17 +44,17 @@ namespace TestProject2
 
             fp.Plot.XAxis.Label("xx");
             fp.Plot.YAxis.Label("yy");
+            fp.Plot.XAxis2.Ticks(true);
+            fp.Plot.XAxis2.Label("xx2");     // 无效，因为标题也是用X2轴名
             fp.Plot.Title("title");
             fp.Plot.Legend(true, Alignment.LowerCenter);
             fp.Plot.AxisAuto();
             fp.Refresh();
-
-            Controls.Add(fp);
-            Padding = new Padding(0, 0, 0, 0);
-            fp.Dock = DockStyle.Fill;
+            
+            return fp;
         }
 
-        private void InsertPolar()
+        private FormsPlot InsertPolar()
         {
             FormsPlot fp = new FormsPlot();
             double[] x = { 2, 3, 4 };
@@ -63,14 +66,13 @@ namespace TestProject2
             PolarPlot pp2 = fp.Plot.AddPolar(x, y2);
             pp2.Label = "polar2";
 
+            //fp.Plot.XAxis
             fp.Plot.Title("title");
             fp.Plot.Legend(true, Alignment.LowerLeft);
             fp.Plot.AxisAuto();
             fp.Refresh();
-
-            Controls.Add(fp);
-            Padding = new Padding(0, 0, 0, 0);
-            fp.Dock = DockStyle.Fill;
+            
+            return fp;
         }
     }
 }

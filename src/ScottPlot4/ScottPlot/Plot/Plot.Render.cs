@@ -55,6 +55,15 @@ namespace ScottPlot
 
         private void RenderBeforePlottables(Bitmap bmp, bool lowQuality, PlotDimensions dims)
         {
+            if (settings.Title != null)
+            {
+                settings.Title.Render(dims, bmp, lowQuality);
+                // 渲染数据点是用动态创建的PlotDimensions对象，所以修改YAxis.Dims
+                YAxis.Dims.Resize(YAxis.Dims.FigureSizePx - settings.Title.Height, YAxis.Dims.DataSizePx - settings.Title.Height, YAxis.Dims.DataOffsetPx + settings.Title.Height);
+                // before和after是用已创建的PlotDimensions对象，所以修改dims
+                dims.DataOffsetY += settings.Title.Height;
+                dims.DataHeight -= settings.Title.Height;
+            }
             settings.DataBackground.Render(dims, bmp, lowQuality);
 
             if (!settings.DrawGridAbovePlottables)

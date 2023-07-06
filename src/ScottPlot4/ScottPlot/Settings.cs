@@ -160,6 +160,11 @@ namespace ScottPlot
         /// </summary>
         public PixelPadding? ManualDataPadding { get; set; } = null;
 
+        /// <summary>
+        /// 图像标题
+        /// </summary>
+        public Title Title { get; set; }
+
         public Settings()
         {
             Plottables.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => PlottablesIdentifier++;
