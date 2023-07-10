@@ -58,8 +58,9 @@ namespace ScottPlot
             if (settings.Title != null)
             {
                 settings.Title.Render(dims, bmp, lowQuality);
-                // 渲染数据点是用动态创建的PlotDimensions对象，所以修改YAxis.Dims
+                // 渲染数据点是用动态创建的PlotDimensions对象，所以修改YAxis.Dims和YAxis2.Dims
                 YAxis.Dims.Resize(YAxis.Dims.FigureSizePx - settings.Title.Height, YAxis.Dims.DataSizePx - settings.Title.Height, YAxis.Dims.DataOffsetPx + settings.Title.Height);
+                YAxis2.Dims.Resize(YAxis2.Dims.FigureSizePx - settings.Title.Height, YAxis2.Dims.DataSizePx - settings.Title.Height, YAxis2.Dims.DataOffsetPx + settings.Title.Height);
                 // before和after是用已创建的PlotDimensions对象，所以修改dims
                 dims.DataOffsetY += settings.Title.Height;
                 dims.DataHeight -= settings.Title.Height;

@@ -26,7 +26,7 @@ namespace ScottPlot.Renderable
         public float DataOffsetPx { get; private set; }
 
         /// <summary>
-        /// Indicates whether pixel values ascend in the same direciton as axis unit values.
+        /// Indicates whether pixel values ascend in the same direction as axis unit values.
         /// Horizontal axes are not inverted (both ascend from left to right).
         /// Vertical axes are inverted (units ascend from bottom to top but pixel positions ascend from top to bottom).
         /// </summary>
