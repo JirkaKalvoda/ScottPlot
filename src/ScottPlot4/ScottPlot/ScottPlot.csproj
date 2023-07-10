@@ -23,7 +23,7 @@
     <Authors>Scott Harden</Authors>
     <Company>Harden Technologies, LLC</Company>
     <RepositoryUrl>https://github.com/ScottPlot/ScottPlot</RepositoryUrl>
-    <DocumentationFile>ScottPlot.xml</DocumentationFile>
+    <DocumentationFile>$(OutDir)ScottPlot.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
     <DebugType>portable</DebugType>
     <IncludeSymbols>true</IncludeSymbols>
@@ -32,6 +32,10 @@
     <Deterministic>true</Deterministic>
     <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ScottPlot.xml" />
+  </ItemGroup>
 
   <ItemGroup>
 

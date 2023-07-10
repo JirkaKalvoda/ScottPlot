@@ -5,7 +5,12 @@
     <TargetFramework>net472</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>$(OutDir)ScottPlot.WinForms.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="ScottPlot.WinForms.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ScottPlot\ScottPlot.csproj" />

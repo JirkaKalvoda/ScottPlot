@@ -20,7 +20,8 @@ namespace TestProject2
             StartPosition = FormStartPosition.CenterScreen;
             FormsPlot fp;
             //fp = InsertScatter();
-            fp = InsertPolar();
+            //fp = InsertPolar();
+            fp = InsertPolar2();
             Controls.Add(fp);
             Padding = new Padding(0, 0, 0, 0);
             fp.Dock = DockStyle.Fill;
@@ -72,6 +73,36 @@ namespace TestProject2
             fp.Plot.AxisAuto();
             fp.Refresh();
             
+            return fp;
+        }
+
+        private FormsPlot InsertPolar2()
+        {
+            FormsPlot fp = new FormsPlot();
+            const int size = 1000;
+            double[] x = new double[size];
+            double[] y = new double[size];
+            double[] y2 = new double[size];
+            Random r1 = new Random(DateTime.Now.Millisecond);
+            Random r2 = new Random(DateTime.Now.Millisecond + 73);
+            Random r3 = new Random(DateTime.Now.Millisecond + 127);
+            for (int i = 0; i < 1000; ++i)
+            {
+                y[i] = r1.NextDouble() * 14 - 7;
+                y2[i] = r2.NextDouble() * 14 - 7;
+                x[i] = r3.NextDouble() * 1000;
+            }
+            PolarPlot pp = fp.Plot.AddPolar(x, y);
+            pp.Label = "polar";
+            PolarPlot pp2 = fp.Plot.AddPolar(x, y2);
+            pp2.Label = "polar2";
+
+            //fp.Plot.XAxis
+            fp.Plot.Title("title");
+            fp.Plot.Legend(true, Alignment.LowerLeft);
+            fp.Plot.AxisAuto();
+            fp.Refresh();
+
             return fp;
         }
     }
